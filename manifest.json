@@ -1,0 +1,17 @@
+{
+  "name": "Job Search Extensions",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+  {
+    "matches": ["*://www.google.com/search*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }
+]
+}

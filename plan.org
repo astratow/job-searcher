@@ -1,0 +1,47 @@
+* Job Tracker Chrome Extension Plan
+
+** Phase 1: MVP – Local-Only Tracker
+   Goal: A working extension that stores and displays job entries locally.
+
+*** DONE 1. Setup & Layout
+    - Create folder & manifest.json
+    - Add basic popup.html and popup.js
+    - Load into Chrome and debug
+
+*** TODO 2. Add Job Form
+    - Inputs: Company, Title, Link, Status
+    - Submit button
+    - Validate inputs
+
+*** TODO 3. Store Data Locally
+    - Save job entries using chrome.storage.local
+    - Load jobs on popup open
+
+*** TODO 4. Display Job List
+    - Render each saved job entry as a list item
+    - Include company, title, status, and link
+
+*** TODO 5. Basic Actions
+    - Delete job entry
+    - (Optional later) Edit job entry
+
+*** TODO 6. Polish the UI
+    - Add icons or colors for status
+    - Improve layout with CSS
+
+** Phase 2: Optional – Cloud Sync (Database)
+   Options for syncing with a backend service
+
+*** TODO Use Firebase
+    - Real-time database or Firestore
+    - Google login for auth
+    - Easy browser integration
+
+*** TODO Use Custom Backend API
+    - Host your own API (Node.js, Django, etc.)
+    - Use fetch() in the extension
+    - Requires CORS headers and manifest permissions
+
+** Notes
+   - Build MVP locally first
+   - Add cloud features once UI and storage work well
