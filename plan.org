@@ -1,47 +1,61 @@
+
+---
+
+## ✅ **plan.org (updated)**
+
+```org
 * Job Tracker Chrome Extension Plan
 
-** Phase 1: MVP – Local-Only Tracker
-   Goal: A working extension that stores and displays job entries locally.
+** Phase 1: MVP – Local Job Search Scraper
+   Goal: A working Chrome extension that scrapes Google job search results
+   and exports them to CSV.
 
 *** DONE 1. Setup & Layout
-    - Create folder & manifest.json
-    - Add basic popup.html and popup.js
-    - Load into Chrome and debug
+    - manifest.json created
+    - popup.html + popup.js linked
+    - Loaded and tested in Chrome
 
-*** TODO 2. Add Job Form
-    - Inputs: Company, Title, Link, Status
-    - Submit button
-    - Validate inputs
+*** DONE 2. Basic Scraper (content.js)
+    - Scrapes titles, URLs, snippets from Google Search
+    - Stores results in chrome.storage.local
 
-*** TODO 3. Store Data Locally
-    - Save job entries using chrome.storage.local
-    - Load jobs on popup open
+*** DONE 3. Export Function
+    - Export button creates filtered CSV
+    - Filters by developer-related keywords
 
-*** TODO 4. Display Job List
-    - Render each saved job entry as a list item
-    - Include company, title, status, and link
+*** DONE 4. Merge Results
+    - Merges new results with existing ones
+    - Removes duplicates by URL
 
-*** TODO 5. Basic Actions
-    - Delete job entry
-    - (Optional later) Edit job entry
+*** DONE 5. Add Preselected Auto Searches
+    - Button "Search"
+    - Opens multiple preconfigured Google queries
+    - Waits for pages to load and collects results
+    - Closes tabs automatically
 
 *** TODO 6. Polish the UI
-    - Add icons or colors for status
-    - Improve layout with CSS
+    - Add icons, spacing, and instructions in popup
+    - Improve mobile layout if needed
 
-** Phase 2: Optional – Cloud Sync (Database)
-   Options for syncing with a backend service
+*** TODO 7. Settings Page (Configurable Searches)
+    - New HTML page for managing preselected search terms
+    - Save and load from chrome.storage.local
 
-*** TODO Use Firebase
-    - Real-time database or Firestore
-    - Google login for auth
-    - Easy browser integration
+*** TODO 8. Notifications or Scheduling
+    - Option to run searches daily or weekly automatically
+    - Optional notification when new results are found
 
-*** TODO Use Custom Backend API
-    - Host your own API (Node.js, Django, etc.)
-    - Use fetch() in the extension
-    - Requires CORS headers and manifest permissions
+** Phase 2: Job Tracker Integration (Optional)
+   Integrate collected results into a local or cloud-based job tracker.
+
+*** TODO Local Job List
+    - Display stored job entries in popup
+    - Allow marking jobs as applied/interviewed/etc.
+
+*** TODO Cloud Sync (Optional)
+    - Use Firebase or custom backend
+    - Sync user’s job list online
 
 ** Notes
-   - Build MVP locally first
-   - Add cloud features once UI and storage work well
+   - Build and stabilize local automation first
+   - Keep CSV export working through all phases
