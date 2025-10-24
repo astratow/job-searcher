@@ -1,32 +1,48 @@
-console.log('Popup.js uruchomiony');
+console.log("Popup.js started");
 
 document.getElementById("exportBtn").addEventListener("click", async () => {
-    try {
-        const data = await chrome.storage.local.get("googleResults");
-        const results = data.googleResults || [];
+  try {
+    const data = await chrome.storage.local.get("googleResults");
+    const results = data.googleResults || [];
 
-        if(!results.length) return alert("Brak wyników do eksportu");
+    if (!results.length) return alert("No results found to export");
 
-		const keywords = ["developer", "engineer", "software", "full stack", "backend", "frontend", "programmer"];
-		const filtered = results.filter(r =>
-		    keywords.some(kw => r.title.toLowerCase().includes(kw) || r.snippet.toLowerCase().includes(kw))
-		);
-        if(!filtered.length) return alert("Brak wyników po filtrze słów kluczowych");
+    const keywords = [
+      "developer",
+      "engineer",
+      "software",
+      "full stack",
+      "backend",
+      "frontend",
+      "programmer",
+    ];
+    const filtered = results.filter((r) =>
+      keywords.some(
+        (kw) =>
+          r.title.toLowerCase().includes(kw) ||
+          r.snippet.toLowerCase().includes(kw)
+      )
+    );
+    if (!filtered.length)
+      return alert("No results found after keyword filtering");
 
-        let csv = "Title,URL,Snippet\n";
-        filtered.forEach(r => {
-            csv += `"${r.title.replace(/"/g,'""')}","${r.url}","${r.snippet.replace(/"/g,'""')}"\n`;
-        });
+    let csv = "Title,URL,Snippet\n";
+    filtered.forEach((r) => {
+      csv += `"${r.title.replace(/"/g, '""')}","${r.url}","${r.snippet.replace(
+        /"/g,
+        '""'
+      )}"\n`;
+    });
 
-        const blob = new Blob([csv], {type: 'text/csv'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'google_results.csv';
-        a.click();
-        URL.revokeObjectURL(url);
-    } catch(err) {
-        console.error(err);
-        alert("Błąd podczas eksportu CSV");
-    }
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "google_results.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error(err);
+    alert("Error exporting CSV");
+  }
 });
